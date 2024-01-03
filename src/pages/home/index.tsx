@@ -65,7 +65,7 @@ const Home = () => {
       <div>
         <div style={styles.lineStyle}></div>
         <div
-          key={item.firstName} 
+          key={item.firstName}
           style={{
             position: "relative",
             display: "flex",
@@ -132,7 +132,7 @@ const Home = () => {
             style={{
               position: "absolute",
               left: "75%",
-              ...statusStyles, 
+              ...statusStyles,
             }}
           >
             {item.status}
@@ -217,25 +217,12 @@ const Home = () => {
               marginRight: 10,
               cursor: "pointer",
             }}
-           
           >
             {selectedFilter}{" "}
             {/* <img src={arrowDownArrow} alt="" style={styles.img} /> */}
           </label>
           {dropdownVisible && (
-            <div
-              style={{
-                position: "absolute",
-                top: '22%',
-                left: '19.3%',
-                backgroundColor: "white",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                zIndex: 1,
-                width: "17%",
-              }}
-            >
+            <div style={styles.dropdown}>
               <div
                 style={styles.dropdownItem}
                 onClick={() => handleFilterClick("All")}
@@ -276,31 +263,14 @@ const Home = () => {
             <SearchBar />
           </div>
           <div style={{ width: "33%", marginLeft: 15 }}>
-            <div
-              style={{
-                backgroundColor: "#039BF0",
-                padding: "13px",
-                borderRadius: 4,
-                display: "flex",
-                alignItems: "center",
-                color: "white",
-              }}
-            >
+            <div style={styles.addIcon}>
               <img src={addIcon} alt="" />
               <label>Add New Verifier</label>
             </div>
           </div>
         </div>
       </div>
-      <div
-        style={{
-          backgroundColor: "white",
-          margin: 30,
-          position: "relative",
-          height: "100vh",
-          paddingTop: 10,
-        }}
-      >
+      <div style={styles.mainBodyWrapper}>
         <div
           style={{
             position: "relative",
@@ -309,16 +279,7 @@ const Home = () => {
             marginTop: 20,
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              left: "2%",
-              height: 10,
-              width: 10,
-              borderRadius: 2,
-              border: "1px solid #6C6C6C",
-            }}
-          ></div>
+          <div style={styles.box}></div>
           <label
             style={{ ...styles.labelHeader, position: "absolute", left: "10%" }}
           >
@@ -356,55 +317,17 @@ const Home = () => {
           </label>
         </div>
         {displayItems.map(renderItem)}
-        <div
-          style={{
-            height: 70,
-            backgroundColor: "white",
-            width: "78.5%",
-            position: "fixed",
-            bottom: 0,
-            boxShadow: "0px -5px 5px -5px rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              width: "25%",
-              marginTop: 20,
-              marginRight: 10,
-              marginLeft: 20,
-            }}
-          >
+        <div style={styles.bottomWrap}>
+          <div style={styles.bottomLeftWrap}>
             <label style={{ color: "rgba(128, 128, 128, 1)" }}>
               Rows per page
             </label>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                border: "1px solid",
-                padding: 3,
-                width: "25%",
-                justifyContent: "space-between",
-                marginLeft: 10,
-              }}
-            >
+            <div style={styles.rectangle}>
               <label>10</label>
               <img src={arrowDownArrow} alt="" />
             </div>
           </div>
-          <div
-            style={{
-              position: "fixed",
-              bottom: 30,
-              right: 50,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <div style={styles.paginationWrap}>
             <div
               style={{
                 color: currentPage > 1 ? "#039BF0" : "#CCC",
@@ -492,11 +415,78 @@ const styles = {
     marginTop: 30,
     marginBottom: 30,
   },
-  dropdown: {},
+  dropdown: {
+    position: "absolute" as const,
+    top: "22%",
+    left: "19.3%",
+    backgroundColor: "white",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    zIndex: 1,
+    width: "17%",
+  },
   dropdownItem: {
     padding: "10px",
     cursor: "pointer",
     // borderBottom: "1px solid #ccc",
+  },
+  addIcon: {
+    backgroundColor: "#039BF0",
+    padding: "13px",
+    borderRadius: 4,
+    display: "flex",
+    alignItems: "center",
+    color: "white",
+  },
+  mainBodyWrapper: {
+    backgroundColor: "white",
+    margin: 30,
+    position: "relative" as const,
+    height: "100vh",
+    paddingTop: 10,
+  },
+  box: {
+    position: "absolute" as const,
+    left: "2%",
+    height: 10,
+    width: 10,
+    borderRadius: 2,
+    border: "1px solid #6C6C6C",
+  },
+  bottomWrap: {
+    height: 70,
+    backgroundColor: "white",
+    width: "78.5%",
+    position: "fixed" as const,
+    bottom: 0,
+    boxShadow: "0px -5px 5px -5px rgba(0, 0, 0, 0.5)",
+  },
+  bottomLeftWrap: {
+    display: "flex",
+    flexDirection: "row" as const,
+    alignItems: "center",
+    width: "25%",
+    marginTop: 20,
+    marginRight: 10,
+    marginLeft: 20,
+  },
+  rectangle: {
+    display: "flex",
+    flexDirection: "row" as const,
+    alignItems: "center",
+    border: "1px solid",
+    padding: 3,
+    width: "25%",
+    justifyContent: "space-between",
+    marginLeft: 10,
+  },
+  paginationWrap: {
+    position: "fixed" as const,
+    bottom: 30,
+    right: 50,
+    display: "flex",
+    alignItems: "center",
   },
 };
 
