@@ -19,14 +19,37 @@ const LoginPage = () => {
   const handleInputChange = (field:any, value:any) => {
     setLoginState((prevData) => ({ ...prevData, [field]: value }));
   };
-  const submitHandler = (e:React.FormEvent)=>{
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    if(!loginState.email || !loginState.password){
-      alert('All fields are required')
+  
+    // Regular expression for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // Regular expression for password validation
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+  
+    if (!loginState.email || !loginState.password) {
+      alert('All fields are required');
       return;
     }
-    navigate('/')
-  }
+  
+    // Check if the email is valid
+    if (!emailRegex.test(loginState.email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+  
+    // Check if the password is valid
+    if (!passwordRegex.test(loginState.password)) {
+      alert('Please enter a valid password. It should be at least 8 characters long and include a capital letter, a number, and a special character.');
+      return;
+    }
+  
+    // Proceed with navigation if all checks pass
+    navigate('/');
+  };
+  
+  
 
   return (
     <div style={styles.backgroundWrapper}>
