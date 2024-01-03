@@ -16,15 +16,19 @@ const InputModal = ({ onClose, children }: any) => {
   }, [onClose]);
   return (
     <div>
-      <div  style={{
-          position: 'fixed',
+      <div
+        className="mmmodalsss-backdrop"
+        style={{
+          position: "fixed",
           top: 0,
           left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)', /* Update the background color with transparency */
+          width: "100%",
+          height: "100%",
+          backgroundColor:
+            "rgba(0, 0, 0, 0.8)" /* Update the background color with transparency */,
           zIndex: 9,
-      }} />
+        }}
+      />
       <div
         style={{
           position: "fixed",

@@ -65,7 +65,7 @@ const Home = () => {
       <div>
         <div style={styles.lineStyle}></div>
         <div
-          key={item.firstName} // Use a unique key for each item
+          key={item.firstName} 
           style={{
             position: "relative",
             display: "flex",
@@ -132,7 +132,7 @@ const Home = () => {
             style={{
               position: "absolute",
               left: "75%",
-              ...statusStyles, // Apply the status-specific styles
+              ...statusStyles, 
             }}
           >
             {item.status}
@@ -163,11 +163,6 @@ const Home = () => {
   const handleFilterClick = (filter: any) => {
     setSelectedFilter(filter);
     setDropdownVisible(false);
-    // Additional logic to filter the table based on the selected filter
-    // You can update the logic based on your data structure and filtering requirements
-    // For now, let's assume you have a filterTable function
-    // const filteredItems = filterTable(filter);
-    // Update the logic according to your needs
   };
 
   const displayItems = items.slice(
